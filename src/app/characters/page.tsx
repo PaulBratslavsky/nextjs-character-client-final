@@ -1,4 +1,5 @@
 import Card from "../components/Card";
+import Link from "next/link";
 
 const getAllCharacter = async () => {
   try {
@@ -21,7 +22,9 @@ export default async function CharacterRoute() {
   return (
     <div className="grid grid-cols-4 gap-4 my-6">
       {data.map((character: any) => (
-        <Card key={character.id} data={character.attributes} />
+        <Link href={`/characters/${character.id}`}>
+          <Card key={character.id} data={character.attributes} />
+        </Link>
       ))}
     </div>
   );

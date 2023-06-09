@@ -1,9 +1,10 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Card from "./Card";
-import Loader from "./Loader";
-import Form from "./Form";
+
+import Card from "@/app/components/Card";
+import Form from "@/app/components/Form";
+import PageLoader from "@/app/components/PageLoader";
 
 export default function GenerateCharacter() {
   const router = useRouter();
@@ -72,7 +73,7 @@ export default function GenerateCharacter() {
     }
   };
 
-  if (loading) return <Loader />;
+  if (loading) return <PageLoader />;
 
   return (
     <div>
