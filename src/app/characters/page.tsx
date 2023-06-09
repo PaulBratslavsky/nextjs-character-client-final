@@ -4,7 +4,8 @@ const getAllCharacter = async () => {
   try {
     const url = process.env.NEXT_PUBLIC_STRAPI_API_URL;
     const charactersResponse = await fetch(
-      `${url}/api/characters?sort[0]=createdAt:desc`
+      `${url}/api/characters?sort[0]=createdAt:desc`,
+      { next: { revalidate: 60 } }
     );
     const charactersResponseData = await charactersResponse.json();
     if (charactersResponseData.error)

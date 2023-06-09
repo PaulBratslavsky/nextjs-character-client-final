@@ -26,10 +26,10 @@ export default function GenerateCharacter() {
       );
 
       const generateResponseData = await generateResponse.json();
-      if (generateResponseData.error) throw new Error(generateResponseData.error);
+      if (generateResponseData.error)
+        throw new Error(generateResponseData.error);
 
       setData(generateResponseData.data);
-
     } catch (error) {
       if (error instanceof Error) throw new Error(error.message);
     } finally {
@@ -56,7 +56,7 @@ export default function GenerateCharacter() {
       const formData = new FormData();
       formData.append("data", JSON.stringify({ ...data }));
       formData.append("files.image", myBlob, myBlob.name);
-      
+
       const saveResponse = await fetch(`${url}/api/characters`, {
         method: "POST",
         body: formData,
@@ -64,9 +64,9 @@ export default function GenerateCharacter() {
 
       const saveResponseData = await saveResponse.json();
       if (saveResponseData.error) throw new Error(saveResponseData.error);
-
-      router.push("/characters");
       
+      router.push("/characters")
+
     } catch (error) {
       if (error instanceof Error) throw new Error(error.message);
     }
