@@ -1,4 +1,5 @@
 "use client";
+import { useRouter } from 'next/navigation'
 import { useState } from "react";
 import Form from "@/app/components/Form";
 
@@ -17,6 +18,7 @@ interface GenerateStoryProps {
 }
 
 export default function GenerateCharacter(data: GenerateStoryProps) {
+  const router = useRouter()
   const [loading, setLoading] = useState<boolean>(false);
 
   const generateStoryAndSave = async (
@@ -70,7 +72,8 @@ export default function GenerateCharacter(data: GenerateStoryProps) {
       if (saveResponseData.error)
         throw new Error(saveResponseData.error);
 
-      console.log(saveResponseData.data);
+        router.push(`/characters/${data.data.id}/${saveResponseData.data.id}`)
+
     } catch (error) {
       if (error instanceof Error) throw new Error(error.message);
     } finally {

@@ -18,10 +18,13 @@ const getCharacterById = async (id: string) => {
 
 export default async function CharacterLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: any;
 }) {
-  const data = await getCharacterById("20");
+  const id = params.characterId;
+  const data = await getCharacterById(id);
   return (
     <div className="grid grid-cols-4 gap-4 my-6">
       <div className="col-span-3">{children}</div>
